@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Indexページを表示
+Route::get('/', 'IndexController@index');
+
+// Todoページを表示
+Route::get('/todolist','TodoController@todoList');
