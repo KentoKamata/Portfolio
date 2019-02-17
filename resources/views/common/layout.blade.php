@@ -1,4 +1,3 @@
-@yield('phpTodo')
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -25,7 +24,7 @@
                         <a class="nav-link" href="http://kkamata-engineer.com/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://kkamata-engineer.com/todolist">ToDo</a>
+                        <a class="nav-link" href="http://kkamata-engineer.com/tasks">Task</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Post</a>
