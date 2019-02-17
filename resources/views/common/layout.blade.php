@@ -24,7 +24,7 @@
                         <a class="nav-link" href="http://kkamata-engineer.com/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://kkamata-engineer.com/tasklist">ToDo</a>
+                        <a class="nav-link" href="http://kkamata-engineer.com/tasks">Task</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Post</a>

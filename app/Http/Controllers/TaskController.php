@@ -12,9 +12,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getTaskList()
+    public function getAll()
     {
         $tasks = Task::all();
-        return view('task',compact('tasks'));
+        return view('task', compact('tasks'));
     }
 }
