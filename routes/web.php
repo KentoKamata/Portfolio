@@ -15,4 +15,4 @@
 Route::get('/', 'IndexController@index');
 
 // Todoページを表示
-Route::get('/todolist','TodoController@todoList');
+Route::get('/tasklist','TaskController@task');
