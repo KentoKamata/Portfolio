@@ -1,4 +1,3 @@
-@yield('phpTodo')
 <!DOCTYPE html>
 <html lang="ja">
 

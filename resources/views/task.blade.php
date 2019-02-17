@@ -1,9 +1,4 @@
 @extends('common.layout')
-@section('phpTask')
-<?php
-use App\Task;
-?>
-@endsection
 
 @section('main')
         <!-- ジャンボトロン -->
@@ -24,13 +19,18 @@ use App\Task;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $tasks = App\task::all();
-
-                    foreach ($tasks as $task) {
-                        echo '<tr><td>' . $task->id . '</td><td>' . $task->title . '</td><td>' . $task->contents . '</td><td>' . $task->limitDate . '</td><td>' . $task->priority . '</td><td>' . $task->category . '</td><td>' . $task->assignee . '</td><td>' . $task->status.'</tr>';
-                    }
-                    ?>
+                @foreach($tasks as $task)
+                    <tr>
+                        <td>{{ $task->id }}</td>
+                        <td>{{ $task->title }}</td>
+                        <td>{{ $task->contents }}</td>
+                        <td>{{ $task->limitDate }}</td>
+                        <td>{{ $task->priority }}</td>
+                        <td>{{ $task->category }}</td>
+                        <td>{{ $task->assignee }}</td>
+                        <td>{{ $task->status }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
         </table>
     </div>

@@ -12,17 +12,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function task()
+    public function getTaskList()
     {
-        $task = new Task;
-        $task->title = 'sampleTitle';
-        $task->contents = 'test';
-        $task->limitDate = '2019/02/17';
-        $task->priority = 1;
-        $task->category = 'category';
-        $task->assignee = 'aaa';
-        $task->status = 0;
-        $task->save();
-        return view('task');
+        $tasks = Task::all();
+        return view('task',compact('tasks'));
     }
 }
