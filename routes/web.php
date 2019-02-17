@@ -11,5 +11,8 @@
 |
 */
 
-Route::get('/', 'indexController@index');
-Route::get('/todolist','todoListController@todoList');
+// IndexControllerを表示
+Route::get('/', 'IndexController@index');
+
+// TodoControllerを表示
+Route::get('/todolist','TodoController@todoList');
