@@ -5,7 +5,6 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table class="table">
-        
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -34,7 +33,6 @@
                 @endforeach
                 </tbody>
         </table>
-
         <form action="/addtask" method="POST" accept-charset="utf-8">
             {!! csrf_field() !!}
             <div class="input-group mb-3">

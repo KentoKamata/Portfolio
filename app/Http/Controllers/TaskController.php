@@ -19,66 +19,16 @@ class TaskController extends Controller
     }
     public function addTask()
     {
-
-        #########################　POSTデータ格納　##############################
-
-        //** postタイトル */ 
-        if (Request::has('title')) {
-            $title = Request::input('title');
-        } else {
-            $title = 'タイトル無し';
-        }
-        //** postコンテンツ */ 
-        if (Request::has('content')) {
-            $content = Request::input('content');
-        } else {
-            $content = 'コンテンツなし';
-        }
-        //** post期限 */ 
-        if (Request::has('limitDate')) {
-            $limitDate = Request::input('limitDate');
-        } else {
-            $limitDate = '期限無し';
-        }
-        //** post優先度 */ 
-        if (Request::has('priority')) {
-            $priority = Request::input('priority');
-        } else {
-            $priority = '優先無し';
-        }
-        //** postカテゴリ */ 
-        if (Request::has('category')) {
-            $category = Request::input('category');
-        } else {
-            $category = 'カテゴリ無し';
-        }
-        //** post任命者 */ 
-        if (Request::has('assignee')) {
-            $assignee = Request::input('assignee');
-        } else {
-            $assignee = '任命者無し';
-        }
-        //** postステータス */ 
-        if (Request::has('status')) {
-            $status = Request::input('status');
-        } else {
-            $status = 'ステータス無し';
-        }
-        ###########################################################################
-
-        #########################　DBにタスク追加　#################################
         $taskItem = new Task;
-        $taskItem->title = $title;
-        $taskItem->contents = $content;
-        $taskItem->limitDate = $limitDate;
-        $taskItem->priority = $priority;
-        $taskItem->category = $category;
-        $taskItem->assignee = $assignee;
-        $taskItem->status = $status;
+        $taskItem->title = Request::has('title') ? Request::input('title') : 'タイトル無し';
+        $taskItem->contents = Request::has('content') ? Request::input('content') : 'コンテンツなし';
+        $taskItem->limitDate = Request::has('limitDate') ? Request::input('limitDate') : '期限無し';
+        $taskItem->priority = Request::has('priority') ? Request::input('priority') : '優先無し';
+        $taskItem->category = Request::has('category') ? Request::input('category') : 'カテゴリ無し';
+        $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '任命者無し';
+        $taskItem->status = Request::has('status') ? Request::input('status') : 'ステータス無し';
         $taskItem->save();
-        ##############################################################################
-        
         $tasks = Task::all();
-        return view('task',compact('tasks'));
+        return view('task', compact('tasks'));
     }
 }
