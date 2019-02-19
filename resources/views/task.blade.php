@@ -5,6 +5,7 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table class="table">
+        
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -16,6 +17,8 @@
                         <th>CATEGORY</th>
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
+                        <th>DELETEBUTTON</th>
+                        <th>EDITBUTTON</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,11 +32,23 @@
                         <td>{{ $task->category }}</td>
                         <td>{{ $task->assignee }}</td>
                         <td>{{ $task->status }}</td>
+                        <td>
+                            <form action="/task/delete" method="GET" accept-charset="utf-8">
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">削除</button>
+                                <input type="hidden" name = 'deleteId' value = '{{ $task->id }}'>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/task/edit" method="GET" accept-charset="utf-8">
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">変更</button>
+                                <input type="hidden" name = 'editId' value = '{{ $task->id }}'>
+                            </form>
+                        </td>                        
                     </tr>
                 @endforeach
                 </tbody>
         </table>
-        <form action="/addtask" method="POST" accept-charset="utf-8">
+        <form action="/task/add" method="POST" accept-charset="utf-8">
             {!! csrf_field() !!}
             <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-sm" placeholder="タスクを入力" name='title'>
