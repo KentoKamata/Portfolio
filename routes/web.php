@@ -18,7 +18,10 @@ Route::get('/', 'IndexController@index');
 Route::get('/tasks','TaskController@getAll');
 
 //タスク追加
-Route::post('/addtask','TaskController@addTask');
+Route::post('/task/add','TaskController@add');
 
 //タスク削除
-Route::get('/deletetask','TaskController@deleteTask');
+Route::get('/task/delete','TaskController@delete');
+
+//タスク変更
+Route::get('/edittask','TaskController@editTask');

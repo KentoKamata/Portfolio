@@ -5,7 +5,6 @@
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table class="table">
-        
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -32,8 +31,8 @@
                         <td>{{ $task->assignee }}</td>
                         <td>{{ $task->status }}</td>
                         <td>
-                            <form action="/deletetask" method="GET" accept-charset="utf-8">
-                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary" value="">削除</button>
+                            <form action="/task/delete" method="GET" accept-charset="utf-8">
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">削除</button>
                                 <input type="hidden" name = 'deleteId' value = '{{ $task->id }}'>
                             </form>
                         </td>
@@ -41,7 +40,7 @@
                 @endforeach
                 </tbody>
         </table>
-        <form action="/addtask" method="POST" accept-charset="utf-8">
+        <form action="/task/add" method="POST" accept-charset="utf-8">
             {!! csrf_field() !!}
             <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-sm" placeholder="タスクを入力" name='title'>
