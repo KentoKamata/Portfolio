@@ -19,3 +19,6 @@ Route::get('/tasks','TaskController@getAll');
 
 //タスク追加
 Route::post('/addtask','TaskController@addTask');
+
+//タスク削除
+Route::get('/deletetask','TaskController@deleteTask');

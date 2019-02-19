@@ -31,4 +31,10 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
+    public function deleteTask()
+    {
+        Task::destroy(Request::input('deleteId'));
+        $tasks = Task::all();
+        return view('task', compact('tasks'));
+    }
 }
