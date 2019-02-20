@@ -5,6 +5,7 @@ use App\Task;
 use App\user;
 use Request;
 
+// タスク画面コントローラ
 class TaskController extends Controller
 {
     /**
@@ -21,8 +22,8 @@ class TaskController extends Controller
     /**
      * タスク追加関数
      * 
-     * IN : 各INPUTBOXへ入力された値を取得
-     * OUT : 取得した値を各カラムに埋め込み、レコードを追加 → task.blade.phpをビュー
+     * IN : 各inputboxのvalue
+     * OUT : $tasksを持たせ、taskページ表示
      */
     public function add()
     {
@@ -42,8 +43,8 @@ class TaskController extends Controller
     /**
      * タスク削除関数
      * 
-     * IN : 削除ボタンを押したレコードのIDを取得
-     * OUT : IDを削除 → 全レコードを取得 → task.blade.phpをビュー
+     * IN : 削除ボタンを押したレコードのID
+     * OUT : $tasksを持たせ、taskページ表示
      */
     public function delete()
     {
@@ -55,8 +56,8 @@ class TaskController extends Controller
     /**
      * タスク変更関数
      * 
-     * IN : 変更ボタンを押したレコードのIDを取得
-     * OUT : 変更画面へ遷移
+     * IN : 変更ボタンを押したレコードのID
+     * OUT : $taskを持たせ、editページ表示
      */
         public function edit()
     {

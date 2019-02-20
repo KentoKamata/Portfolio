@@ -4,8 +4,7 @@
         <!-- ジャンボトロン -->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <table class="table">
-        
+        <table class="table">        
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -17,8 +16,8 @@
                         <th>CATEGORY</th>
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
-                        <th>DELETEBUTTON</th>
-                        <th>EDITBUTTON</th>
+                        <th>DELETE</th>
+                        <th>EDIT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +39,7 @@
                         </td>
                         <td>
                             <form action="/task/edit" method="GET" accept-charset="utf-8">
-                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">変更</button>
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">編集</button>
                                 <input type="hidden" name = 'editId' value = '{{ $task->id }}'>
                             </form>
                         </td>                        

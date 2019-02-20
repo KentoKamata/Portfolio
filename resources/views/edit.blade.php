@@ -1,11 +1,10 @@
 @extends('common.layout')
 
 @section('main')
-        <!-- ジャンボトロン -->
+<!-- ジャンボトロン -->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <table class="table">
-        
+        <table class="table">        
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -17,8 +16,8 @@
                         <th>CATEGORY</th>
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
-                        <th>DELETEBUTTON</th>
-                        <th>EDITBUTTON</th>
+                        <th>DELETE</th>
+                        <th>EDIT</th>
                     </tr>
                 </thead>
         </table>

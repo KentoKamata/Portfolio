@@ -17,14 +17,14 @@ Route::get('/', 'IndexController@index');
 // Todoページを表示
 Route::get('/tasks','TaskController@getAll');
 
-//タスク追加
+// タスク追加
 Route::post('/task/add','TaskController@add');
 
-//タスク削除
+// タスク削除
 Route::get('/task/delete','TaskController@delete');
 
-//タスク変更画面へ
+// タスク変更画面へ
 Route::get('/task/edit','TaskController@edit');
 
-//タスク更新
+// タスク更新
 Route::get('/task/update','EditController@update');

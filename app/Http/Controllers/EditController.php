@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 use App\Task;
 use Request;
 
+// エディット画面コントローラ
 class EditController extends Controller
 {
     /**
      * エディット画面で入力された情報を更新
-     * 
-     * IN : edit画面のINPUTに入力した情報を取得
-     * OUT : 変更ボタン押したレコード情報を修正
+     *
+     * IN : edit画面inputboxの各value
+     * OUT : $tasksを持たせ、taskページ表示
      */
     public function update()
     {
