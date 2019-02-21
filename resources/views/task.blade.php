@@ -16,7 +16,7 @@
                         <th>CATEGORY</th>
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
-                        <th>DELETEBUTTON</th>
+                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>

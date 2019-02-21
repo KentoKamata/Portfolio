@@ -21,8 +21,8 @@ class TaskController extends Controller
     /**
      * タスク追加関数
      * 
-     * IN : 各INPUTBOXへ入力された値を取得
-     * OUT : 取得した値を各カラムに埋め込み、レコードを追加 → task.blade.phpをビュー
+     * @params: 各inputboxのvalue
+     * @returns: $tasksを持たせ、taskページ表示
      */
     public function add()
     {
@@ -38,12 +38,12 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
-    
+
     /**
      * タスク削除関数
      * 
-     * IN : 削除ボタンを押したレコードのIDを取得
-     * OUT : IDを削除 → 全レコードを取得 → task.blade.phpをビュー
+     * @params: 削除ボタンを押したレコードのID
+     * @returns:$tasksを持たせ、taskページ表示
      */
     public function delete()
     {
@@ -52,10 +52,3 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    public function editTask()
-    {
-        // dd(Request::input('editId'));
-        $taskId = Request::input('editId');
-        return view('edit', compact('taskId'));
-    }
-}
