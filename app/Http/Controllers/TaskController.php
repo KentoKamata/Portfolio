@@ -5,6 +5,7 @@ use App\Task;
 use App\user;
 use Request;
 
+// タスク画面コントローラ
 class TaskController extends Controller
 {
     /**
@@ -18,7 +19,7 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    /**
+    /** add
      * タスク追加関数
      * 
      * @params: 各inputboxのvalue
@@ -39,7 +40,7 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    /**
+    /** delete
      * タスク削除関数
      * 
      * @params: 削除ボタンを押したレコードのID
@@ -51,4 +52,4 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
-
+}
