@@ -5,19 +5,28 @@ use App\Task;
 use App\user;
 use Request;
 
+// タスク画面コントローラ
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+    /**getAll
      *
-     * @return \Illuminate\Http\Response
+     * @returns: taskページ表示
      */
     public function getAll()
     {
-        $tasks = Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
     }
-    public function addTask()
+
+    /** add
+     * タスク追加関数
+     * 
+     * @params: 各inputboxのvalue
+     * @returns: $tasksを持たせ、taskページ表示
+     */
+    public function add()
     {
         $taskItem = new Task;
         $taskItem->title = Request::has('title') ? Request::input('title') : 'タイトル無し';
@@ -28,7 +37,36 @@ class TaskController extends Controller
         $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '任命者無し';
         $taskItem->status = Request::has('status') ? Request::input('status') : 'ステータス無し';
         $taskItem->save();
-        $tasks = Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
+    }
+
+    /** delete
+     * タスク削除関数
+     * 
+     * @params: 削除ボタンを押したレコードのID
+     * @returns:$tasksを持たせ、taskページ表示
+     */
+    public function delete()
+    {
+        Task::destroy(Request::input('deleteId'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
+    }
+
+    /** edit
+     * タスク変更関数
+     * 
+     * @params: 変更ボタンを押したレコードのID
+     * @returns: $taskを持たせ、editページ表示
+     */
+    public function edit()
+    {
+        $task = Task::find(Request::input('editId'));
+        return view('edit', compact('task'));
     }
 }
