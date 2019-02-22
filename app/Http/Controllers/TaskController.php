@@ -5,7 +5,11 @@ use App\Task;
 use App\user;
 use Request;
 
-// タスク画面コントローラ
+/**
+ * taskController
+ * タスク画面コントローラ
+ * Taskページの制御系
+ */
 class TaskController extends Controller
 {
     /**
@@ -19,11 +23,11 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    /**
+    /** 
+     * add
      * タスク追加関数
-     * 
-     * IN : 各inputboxのvalue
-     * OUT : $tasksを持たせ、taskページ表示
+     * @params: 各inputboxのvalue
+     * @returns: $tasksを持たせ、taskページ表示
      */
     public function add()
     {
@@ -40,11 +44,11 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    /**
-     * タスク削除関数
-     * 
-     * IN : 削除ボタンを押したレコードのID
-     * OUT : $tasksを持たせ、taskページ表示
+    /** 
+     * delete
+     * タスク削除関数 
+     * @params: 削除ボタンを押したレコードのID
+     * @returns:$tasksを持たせ、taskページ表示
      */
     public function delete()
     {
