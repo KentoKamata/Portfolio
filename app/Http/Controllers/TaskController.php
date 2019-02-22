@@ -57,11 +57,11 @@ class TaskController extends Controller
         return view('task', compact('tasks'));
     }
 
-    /**
+    /** edit
      * タスク変更関数
      * 
-     * IN : 変更ボタンを押したレコードのID
-     * OUT : $taskを持たせ、editページ表示
+     * @params: 変更ボタンを押したレコードのID
+     * @returns: $taskを持たせ、editページ表示
      */
         public function edit()
     {

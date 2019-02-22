@@ -1,10 +1,9 @@
 @extends('common.layout')
-
 @section('main')
-        <!-- ジャンボトロン -->
+<!-- ジャンボトロン -->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
-        <table class="table">        
+        <table class="table">
             <caption>Taskリスト</caption>
                 <thead class="thead-dark">
                     <tr>
@@ -42,7 +41,7 @@
                                 <button type="submit" id="button-addon2" class="btn btn-outline-secondary">編集</button>
                                 <input type="hidden" name = 'editId' value = '{{ $task->id }}'>
                             </form>
-                        </td>                        
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

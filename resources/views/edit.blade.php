@@ -1,5 +1,4 @@
 @extends('common.layout')
-
 @section('main')
 <!-- ジャンボトロン -->
 <div class="jumbotron jumbotron-fluid">
