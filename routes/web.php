@@ -17,5 +17,8 @@ Route::get('/', 'IndexController@index');
 // Todoページを表示
 Route::get('/tasks','TaskController@getAll');
 
-//タスク追加
-Route::post('/addtask','TaskController@addTask');
+// タスク追加
+Route::post('/task/add','TaskController@add');
+
+// タスク削除
+Route::get('/task/delete','TaskController@delete');

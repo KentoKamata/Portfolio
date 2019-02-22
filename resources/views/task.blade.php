@@ -16,6 +16,7 @@
                         <th>CATEGORY</th>
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
+                        <th>DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,11 +30,17 @@
                         <td>{{ $task->category }}</td>
                         <td>{{ $task->assignee }}</td>
                         <td>{{ $task->status }}</td>
+                        <td>
+                            <form action="/task/delete" method="GET" accept-charset="utf-8">
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">削除</button>
+                                <input type="hidden" name = 'deleteId' value = '{{ $task->id }}'>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
         </table>
-        <form action="/addtask" method="POST" accept-charset="utf-8">
+        <form action="/task/add" method="POST" accept-charset="utf-8">
             {!! csrf_field() !!}
             <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-sm" placeholder="タスクを入力" name='title'>

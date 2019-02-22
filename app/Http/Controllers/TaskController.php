@@ -5,6 +5,11 @@ use App\Task;
 use App\user;
 use Request;
 
+/**
+ * taskController
+ * タスク画面コントローラ
+ * Taskページの制御系
+ */
 class TaskController extends Controller
 {
     /**
@@ -17,7 +22,14 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
-    public function addTask()
+
+    /** 
+     * add
+     * タスク追加関数
+     * @params: 各inputboxのvalue
+     * @returns: $tasksを持たせ、taskページ表示
+     */
+    public function add()
     {
         $taskItem = new Task;
         $taskItem->title = Request::has('title') ? Request::input('title') : 'タイトル無し';
@@ -28,6 +40,19 @@ class TaskController extends Controller
         $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '任命者無し';
         $taskItem->status = Request::has('status') ? Request::input('status') : 'ステータス無し';
         $taskItem->save();
+        $tasks = Task::all();
+        return view('task', compact('tasks'));
+    }
+
+    /** 
+     * delete
+     * タスク削除関数 
+     * @params: 削除ボタンを押したレコードのID
+     * @returns:$tasksを持たせ、taskページ表示
+     */
+    public function delete()
+    {
+        Task::destroy(Request::input('deleteId'));
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
