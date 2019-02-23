@@ -13,21 +13,23 @@ use Request;
 class TaskController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * getAll
+     * ステータス別に、Task画面へ看板表示
+     * @returns: taskページ表示
      */
     public function getAll()
     {
-        $tasks = Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
     }
 
     /** 
      * add
      * タスク追加関数
      * @params: 各inputboxのvalue
-     * @returns: $tasksを持たせ、taskページ表示
+     * @returns: taskページ表示
      */
     public function add()
     {
@@ -40,30 +42,34 @@ class TaskController extends Controller
         $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '任命者無し';
         $taskItem->status = Request::has('status') ? Request::input('status') : 'ステータス無し';
         $taskItem->save();
-        $tasks = Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
     }
 
     /** 
      * delete
      * タスク削除関数 
      * @params: 削除ボタンを押したレコードのID
-     * @returns:$tasksを持たせ、taskページ表示
+     * @returns: taskページ表示
      */
     public function delete()
     {
         Task::destroy(Request::input('deleteId'));
-        $tasks = Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
     }
 
-    /** edit
+    /**
+     * edit
      * タスク変更関数
-     * 
      * @params: 変更ボタンを押したレコードのID
-     * @returns: $taskを持たせ、editページ表示
+     * @returns: editページ表示
      */
-        public function edit()
+    public function edit()
     {
         $task = Task::find(Request::input('editId'));
         return view('edit', compact('task'));

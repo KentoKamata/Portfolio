@@ -19,7 +19,7 @@ class EditController extends Controller
      */
     public function update()
     {
-        $task = task::find(Request::input('id'));
+        $task = Task::find(Request::input('id'));
         $task->title = Request::input('title');
         $task->contents = Request::input('content');
         $task->limitDate = Request::input('limitDate');
@@ -28,7 +28,9 @@ class EditController extends Controller
         $task->assignee = Request::input('assignee');
         $task->status = Request::input('status');
         $task->save();
-        $tasks= Task::all();
-        return view('task', compact('tasks'));
+        $todos = Task::where('status', 0)->get();
+        $processes = Task::where('status', 1)->get();
+        $dones = Task::where('status', 2)->get();
+        return view('task', compact('todos','processes','dones'));
     }
 }

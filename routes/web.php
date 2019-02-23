@@ -14,7 +14,7 @@
 // Indexページを表示
 Route::get('/', 'IndexController@index');
 
-// Todoページを表示
+// Taskページを表示
 Route::get('/tasks','TaskController@getAll');
 
 // タスク追加
