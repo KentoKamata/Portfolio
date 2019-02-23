@@ -56,4 +56,16 @@ class TaskController extends Controller
         $tasks = Task::all();
         return view('task', compact('tasks'));
     }
+
+    /** edit
+     * タスク変更関数
+     * 
+     * @params: 変更ボタンを押したレコードのID
+     * @returns: $taskを持たせ、editページ表示
+     */
+        public function edit()
+    {
+        $task = Task::find(Request::input('editId'));
+        return view('edit', compact('task'));
+    }
 }

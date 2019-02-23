@@ -1,7 +1,6 @@
 @extends('common.layout')
-
 @section('main')
-        <!-- ジャンボトロン -->
+<!-- ジャンボトロン -->
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <table class="table">
@@ -17,6 +16,7 @@
                         <th>ASSIGNEE</th>
                         <th>STATUS</th>
                         <th>DELETE</th>
+                        <th>EDIT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +34,12 @@
                             <form action="/task/delete" method="GET" accept-charset="utf-8">
                                 <button type="submit" id="button-addon2" class="btn btn-outline-secondary">削除</button>
                                 <input type="hidden" name = 'deleteId' value = '{{ $task->id }}'>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/task/edit" method="GET" accept-charset="utf-8">
+                                <button type="submit" id="button-addon2" class="btn btn-outline-secondary">編集</button>
+                                <input type="hidden" name = 'editId' value = '{{ $task->id }}'>
                             </form>
                         </td>
                     </tr>

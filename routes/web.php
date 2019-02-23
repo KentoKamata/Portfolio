@@ -22,3 +22,9 @@ Route::post('/task/add','TaskController@add');
 
 // タスク削除
 Route::get('/task/delete','TaskController@delete');
+
+// タスク変更画面へ
+Route::get('/task/edit','TaskController@edit');
+
+// タスク更新
+Route::get('/task/update','EditController@update');
