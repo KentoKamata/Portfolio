@@ -82,7 +82,7 @@
                         <div class="row">
                             @foreach($todos as $todo)
                             <div class="col-lg-6">
-                                <div class="box box-danger box-solid collapsed-box">
+                                <div class="box box-danger collapsed-box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">{{ $todo->id }}：{{ $todo->title }}</h3>
                                         <div class="box-tools pull-right">
@@ -130,7 +130,7 @@
                         <div class="row">
                             @foreach($processes as $process)
                             <div class="col-lg-6">
-                                <div class="box box-warning box-solid collapsed-box">
+                                <div class="box box-warning collapsed-box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">{{ $process->id }}：{{ $process->title }}</h3>
                                         <div class="box-tools pull-right">
@@ -178,7 +178,7 @@
                         <div class="row">
                             @foreach($dones as $done)
                             <div class="col-lg-6">
-                                <div class="box box-primary box-solid collapsed-box">
+                                <div class="box box-primary collapsed-box">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">{{ $done->id }}：{{ $done->title }}</h3>
                                         <div class="box-tools pull-right">
