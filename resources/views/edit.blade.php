@@ -39,9 +39,9 @@
             <div class="form-group">
                 <label>priority</label>
                 <select class="form-control" name='priority'>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
+                    <option value=0>Low</option>
+                    <option value=1>Middle</option>
+                    <option value=2>High</option>
                 </select>
             </div><!-- /.form group -->
             <div class="form-group">
@@ -65,9 +65,9 @@
             <div class="form-group">
                 <label>status</label>
                 <select class="form-control" name='status'>
-                    <option>0</option>
-                    <option>1</option>
-                    <option>2</option>
+                    <option value=0>Todo</option>
+                    <option value=1>Processing</option>
+                    <option value=2>Done</option>
                 </select>
             </div><!-- /.form group --> 
         </div><!-- /.box-body -->

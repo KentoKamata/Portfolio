@@ -33,6 +33,7 @@ class TaskController extends Controller
      */
     public function add()
     {
+        dd('こんちは！');
         $taskItem = new Task;
         $taskItem->title = Request::has('title') ? Request::input('title') : 'タイトル無し';
         $taskItem->contents = Request::has('content') ? Request::input('content') : 'コンテンツなし';

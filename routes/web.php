@@ -28,3 +28,6 @@ Route::get('/task/edit','TaskController@edit');
 
 // タスク更新
 Route::get('/task/update','EditController@update');
+
+// タスク更新
+Route::get('/carendar','CarendarController@showCarendar');
