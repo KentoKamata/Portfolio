@@ -28,3 +28,6 @@ Route::get('/task/edit','TaskController@edit');
 
 // タスク更新
 Route::get('/task/update','EditController@update');
+
+// Calendarページ、タスク期限更新
+Route::get('/calendar','CalendarController@showCalendar');

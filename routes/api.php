@@ -13,6 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// ドラッグ＆ドロップ後の日付に、タスクの期限を更新
+Route::resource('owners', 'ApiController');
