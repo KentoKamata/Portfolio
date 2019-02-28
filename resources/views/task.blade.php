@@ -1,80 +1,86 @@
 @extends('adminlte::page')
+@section('title', 'Tasks')
 @section('content')
+<body style="padding-top:0">
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>TaskCalendar</title>
+</head>
+<section class="content-header">
+    <h1>TaskPage</h1>
+</section>
 <!-- ジャンボトロン -->
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid"  style="background-color:#FFFFFF;background-image: url('{{ asset('img/digital.jpg') }}')">
     <div class="container">
         <!-- 切り替えボタンの設定 -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Task追加
-        </button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Task追加</button>
         <div class="row">
             <!-- モーダルの設定 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Task追加</h5>
+                            <h5 class="modal-title" id="addModal">Task追加</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="box-body">
-                                <form role="form" action="/task/add" method="POST" accept-charset="utf-8">
+                        <form role="form" action="/task/add" method="POST" accept-charset="utf-8">
+                        {{ csrf_field() }}
+                            <div class="modal-body">
+                                <div class="box-body">
                                     <!-- text input -->
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" class="form-control" name='title' placeholder="Enter ...">
+                                        <input type="text" class="form-control" name='title' placeholder="タイトルを入力">
                                     </div>
                                     <div class="form-group">
                                         <label>Content</label>
-                                        <input type="text" class="form-control" name='content' placeholder="Enter ...">
+                                        <input type="text" class="form-control" name='content' placeholder="コンテンツを入力">
                                     </div>
                                     <div class="form-group">
                                         <label>limit</label>
-                                        <input type="text" class="form-control" name='limitDate' placeholder="Enter ...">
+                                        <input type="date" class="form-control" name='limitDate' placeholder="期限を入力">
                                     </div>
                                     <div class="form-group">
                                         <label>priority</label>
                                         <select class="form-control" name='priority'>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
+                                            <option value=0>Low</option>
+                                            <option value=1>Middle</option>
+                                            <option value=2>High</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>category</label>
-                                        <input type="text" class="form-control" name='category' placeholder="Enter ...">
+                                        <input type="text" class="form-control" name='category' placeholder="カテゴリーを入力">
                                     </div>
                                     <div class="form-group">
                                         <label>assign</label>
-                                        <input type="text" class="form-control" name='assignee' placeholder="Enter ...">
+                                        <input type="text" class="form-control" name='assignee' placeholder="担当者を入力">
                                     </div>
                                     <div class="form-group">
                                         <label>status</label>
                                         <select class="form-control" name='status'>
-                                            <option>0</option>
-                                            <option>1</option>
-                                            <option>2</option>
+                                            <option value=0>Todo</option>
+                                            <option value=1>Processing</option>
+                                            <option value=2>Done</option>
                                         </select>
                                     </div>
-                                </form>
-                            </div>
-                        </div><!-- /.modal-body -->
-                        <div class="modal-footer">
-                            <form action="/task/add" method="POST" accept-charset="utf-8">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                                <button type="submit" id="button-addon2" class="btn btn-primary">タスク追加</button>
-                            </form>
-                        </div><!-- /.modal-footer -->
+                                </div><!-- /.box-body -->
+                            </div><!-- /.modal-body -->
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                    <button type="submit" id="button-addon2" class="btn btn-primary">タスク追加</button>
+                            </div><!-- /.modal-footer -->
+                        </form>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-        </div>
+        </div><!-- /.row -->
         <div class="row">
             <!-- todo -->
             <div class="col-lg-4">
-                <div class="box-solid">
+                <div class="box-solid" style="background-color:#E6E6E6;">
                     <div class="box-body">
                         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
                             TODO
@@ -84,7 +90,7 @@
                             <div class="col-lg-6">
                                 <div class="box box-danger collapsed-box">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">{{ $todo->id }}：{{ $todo->title }}</h3>
+                                        <h5 style="overflow: hidden">{{ $todo->title }}</h5>
                                         <div class="box-tools pull-right">
                                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                                 <i class="fa fa-plus"></i>
@@ -99,18 +105,16 @@
                                         @else
                                             <span class="badge badge-pill badge-danger">high</span>
                                         @endif
-                                        <p>期限:{{ $todo->limitDate }}</p>
-                                        <p>カテゴリ:{{ $todo->category }}</p>
-                                        <p>アサイン:{{ $todo->assignee }}</p>
+                                        <h5>期限<br>{{ $todo->limitDate }}</h5>
+                                        <h5>カテゴリ<br>{{ $todo->category }}</h5>
+                                        <h5>担当者<br>{{ $todo->assignee }}</h5>
                                         <p class="mb-0">
-                                            <form action="/task/delete" method="GET" name="deleteForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">削除</button>
-                                                <input type="hidden" name = 'deleteId' value = '{{ $todo->id }}'>
-                                            </form>
-                                            <form action="/task/edit" method="GET" name="editForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">編集</button>
-                                                <input type="hidden" name = 'editId' value = '{{ $todo->id }}'>
-                                            </form>
+                                        <form method="GET">
+                                        {{ csrf_field() }}
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/delete','{{ $todo->id }}')">削除</button>
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/edit','{{ $todo->id }}')">編集</button>
+                                            <input type="hidden" name = 'targetId' value = '{{ $todo->id }}'>
+                                        </form>
                                         </p><!-- /.mb-0 -->
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
@@ -122,7 +126,7 @@
             </div><!-- /.col-lg-4 -->
             <!-- processing -->
             <div class="col-lg-4">
-                <div class="box-solid">
+                <div class="box-solid" style="background-color:#E6E6E6;">
                     <div class="box-body">
                         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
                             PROCESSING
@@ -132,9 +136,10 @@
                             <div class="col-lg-6">
                                 <div class="box box-warning collapsed-box">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">{{ $process->id }}：{{ $process->title }}</h3>
+                                        <h5 style="overflow: hidden">{{ $process->title }}</h5>
                                         <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                         <!-- /.box-tools -->
@@ -147,18 +152,16 @@
                                         @else
                                             <span class="badge badge-pill badge-danger">high</span>
                                         @endif
-                                        <p>期限:{{ $process->limitDate }}</p>
-                                        <p>カテゴリ:{{ $process->category }}</p>
-                                        <p>アサイン:{{ $process->assignee }}</p>
+                                        <h5>期限<br>{{ $process->limitDate }}</h5>
+                                        <h5>カテゴリ<br>{{ $process->category }}</h5>
+                                        <h5>担当者<br>{{ $process->assignee }}</h5>
                                         <p class="mb-0">
-                                            <form action="/task/delete" method="GET" name="deleteForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">削除</button>
-                                                <input type="hidden" name = 'deleteId' value = '{{ $process->id }}'>
-                                            </form>
-                                            <form action="/task/edit" method="GET" name="editForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">編集</button>
-                                                <input type="hidden" name = 'editId' value = '{{ $process->id }}'>
-                                            </form>
+                                        <form method="GET">
+                                            {{ csrf_field() }}
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/delete','{{ $process->id }}')">削除</button>
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/edit','{{ $process->id }}')">編集</button>
+                                            <input type="hidden" name = 'targetId' value = '{{ $process->id }}'>
+                                        </form>
                                         </p><!-- /.mb-0 -->
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
@@ -170,7 +173,7 @@
             </div><!-- /.col-lg-4 -->
             <!-- done -->
             <div class="col-lg-4">
-                <div class="box-solid">
+                <div class="box-solid" style="background-color:#E6E6E6;">
                     <div class="box-body">
                         <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
                             DONES
@@ -178,11 +181,12 @@
                         <div class="row">
                             @foreach($dones as $done)
                             <div class="col-lg-6">
-                                <div class="box box-primary collapsed-box">
+                                <div class="box box-success collapsed-box">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">{{ $done->id }}：{{ $done->title }}</h3>
+                                        <h5 style="overflow: hidden">{{ $done->title }}</h5>
                                         <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                         <!-- /.box-tools -->
@@ -195,18 +199,15 @@
                                         @else
                                             <span class="badge badge-pill badge-danger">high</span>
                                         @endif
-                                        <p>期限:{{ $done->limitDate }}</p>
-                                        <p>カテゴリ:{{ $done->category }}</p>
-                                        <p>アサイン:{{ $done->assignee }}</p>
+                                        <h5>期限<br>{{ $done->limitDate }}</h5>
+                                        <h5>カテゴリ<br>{{ $done->category }}</h5>
+                                        <h5>担当者<br>{{ $done->assignee }}</h5>
                                         <p class="mb-0">
-                                            <form action="/task/delete" method="GET" name="deleteForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">削除</button>
-                                                <input type="hidden" name = 'deleteId' value = '{{ $done->id }}'>
-                                            </form>
-                                            <form action="/task/edit" method="GET" name="editForm" accept-charset="utf-8">
-                                                <button type="submit" id="button-addon2" class="btn btn-primary btn-sm">編集</button>
-                                                <input type="hidden" name = 'editId' value = '{{ $done->id }}'>
-                                            </form>
+                                        <form method="GET">
+                                            {{ csrf_field() }}
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/delete','{{ $done->id }}')">削除</button>
+                                            <button type="button" id="button-addon2" class="btn btn-primary btn-sm" onclick="submitAction('/task/edit','{{ $done->id }}')">編集</button>
+                                        </form>
                                         </p><!-- /.mb-0 -->
                                     </div><!-- /.box-body -->
                                 </div><!-- /.box -->
@@ -216,9 +217,16 @@
                     </div><!-- /.box-body -->
                 </div><!-- /.box-solid -->
             </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
     </div><!-- /.container -->
 </div><!-- /.ジャンボトロン -->
-@stop
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+</body>
+<script>
+
+function submitAction(url,id) {
+    $('form').attr('action', url);
+    $('form').append($('<input>',{type:'hidden',name:'targetId',value:id}));
+    $('form').attr('value',id).submit();
+}
+</script>
 @stop

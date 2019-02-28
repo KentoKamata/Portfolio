@@ -34,13 +34,13 @@ class TaskController extends Controller
     public function add()
     {
         $taskItem = new Task;
-        $taskItem->title = Request::has('title') ? Request::input('title') : 'タイトル無し';
-        $taskItem->contents = Request::has('content') ? Request::input('content') : 'コンテンツなし';
+        $taskItem->title = Request::has('title') ? Request::input('title') : 'タスク';
+        $taskItem->contents = Request::has('content') ? Request::input('content') : 'なし';
         $taskItem->limitDate = Request::has('limitDate') ? Request::input('limitDate') : '期限無し';
-        $taskItem->priority = Request::has('priority') ? Request::input('priority') : '優先無し';
-        $taskItem->category = Request::has('category') ? Request::input('category') : 'カテゴリ無し';
-        $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '任命者無し';
-        $taskItem->status = Request::has('status') ? Request::input('status') : 'ステータス無し';
+        $taskItem->priority = Request::has('priority') ? Request::input('priority') : '0';
+        $taskItem->category = Request::has('category') ? Request::input('category') : 'なし';
+        $taskItem->assignee = Request::has('assignee') ? Request::input('assignee') : '自分';
+        $taskItem->status = Request::has('status') ? Request::input('status') : '0';
         $taskItem->save();
         $todos = Task::where('status', 0)->get();
         $processes = Task::where('status', 1)->get();
@@ -56,7 +56,7 @@ class TaskController extends Controller
      */
     public function delete()
     {
-        Task::destroy(Request::input('deleteId'));
+        Task::destroy(Request::input('targetId'));
         $todos = Task::where('status', 0)->get();
         $processes = Task::where('status', 1)->get();
         $dones = Task::where('status', 2)->get();
@@ -71,7 +71,7 @@ class TaskController extends Controller
      */
     public function edit()
     {
-        $task = Task::find(Request::input('editId'));
+        $task = Task::find(Request::input('targetId'));
         return view('edit', compact('task'));
     }
 }
